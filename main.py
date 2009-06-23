@@ -21,6 +21,7 @@ from gaeo.dispatch import router
 def initRoutes():
     r = router.Router()
     
+    r.connect('/:countrycode', controller='proxy', action='proxy')
     r.connect('/:controller/:action/:id')
     r.root(controller='proxy', action='proxy')
 
