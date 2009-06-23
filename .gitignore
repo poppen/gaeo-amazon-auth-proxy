@@ -1,0 +1,6 @@
+gaeo
+*.pyc
+index.yaml
+amazon-auth-proxy.yaml
+*.swp
+*~
