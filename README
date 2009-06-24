@@ -1,0 +1,55 @@
+Authentication Proxy Server of Amazon Product Advertising API using
+Google App Engine Oil.
+(Amazon Product Advertising APIの認証を代替するPROXYサーバのGoogle
+App Engine Oil実装)
+
+ただただしさんのamazon-auth-proxy.cgiをGoogle App Engine Oil(以下、
+GAEO)で実装したものです。
+<http://github.com/tdtds/amazon-auth-proxy/tree/master>
+
+amazon-auth-proxy.cgiと同じく、従来のAmazon ECS APIとして動作し、
+指定した各国のAmazon PAAPIに対して認証済みリクエストを送信、結果を
+そのまま返します。
+
+rootディレクトリにあるamazon-auth-proxy.yamlというファイルを読み、
+そこに記述されている各種APIキー、アソシエイトIDなどを使ってAPI
+呼び出しを構築します(amazon-auth-proxy.sample.yamlを参照)。
+amazon-auth-proxy.yamlには公開してはいけない情報が含まれています。
+Google App Engineにデプロイした場合には、通常、amazon-auth-proxy.yamlを
+外部から見ることができないため、問題になることはないと思われますが、
+レポジトリで公開する場合などは取り扱いに注意してください。
+
+本プログラムを動かすためにはGAEOのコアをrootディレクトリに置く必要が
+あります。次のどちらかの手順にて入手、設置してください。
+
+1. GAEOの配布サイトから公式パッケージをダウンロード、インストールする。
+   インストールされたoildrumqディレクトリ内のgaeoディレクトリを丸ごと
+   rootディレクトリにコピーする。
+   <http://code.google.com/p/google-app-engine-oil/>
+
+2. 最新のGAEOコアをSubvesionレポジトリから入手する：
+
+   svn co http://google-app-engine-oil.googlecode.com/svn/trunk/oildrum/gaeo/
+
+本プログラムは各国向けAmazonのAPIエントリポイントの個別呼び出しに対応
+しています。デプロイ後Pathに2文字の国コードを指定すると、指定した国の
+AmazonのAPIエントリポイントURLが使用されます。例えば、
+http://gae-aap.appspot.com/jp/ を指定した場合は、日本のAmazonのAPI
+エントリポイントURLが使われます。現在対応している国と国コードは次の
+通りです。
+
+   アメリカ(us)
+   日本(jp)
+   フランス(fr) 
+   イギリス(uk)
+   ドイツ(de)
+
+PathなしのURLを指定した場合には、amazon-auth-proxy.yamlに記述された
+デフォルトのAPIエントリポイントのURLが使用されます。
+
+本プログラムのAmazon Product Advertising APIのコードはYOUTHHRさんのものを
+参考にさせていただいています。
+<http://mudaimemo.blogspot.com/2009/05/amazon-product-advertising-apipython.html>
+
+Copyright (C) 2009 Shinsuke Matsui <poppen.jp@gmail.com>
+You can redistribute it and/or modify it under GPL2.
