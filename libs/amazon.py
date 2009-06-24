@@ -40,12 +40,12 @@ class ProductAdvertising:
     def get_aid(self, countrycode = ''):
         if not countrycode:
             return self.conf['default_aid']
-        elif not self.conf.has_key('aids'):
-            return self.conf['default_aid']
-        elif self.conf['aids'].has_key(countrycode):
-            return self.conf['aids'][countrycode]
         else:
-            return self.conf['default_aid']
+            try:
+                if self.conf['aids'].has_key(countrycode):
+                    return self.conf['aids'][countrycode]
+            except KeyError:
+                return self.conf['default_aid']
 
     def send_request(self):
         if not self.options.has_key('AssociateTag'):
