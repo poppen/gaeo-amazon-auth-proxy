@@ -25,7 +25,10 @@ class ProductAdvertising:
                 pass
             else:
                 self.options[key] = params[key]
-         
+
+        if not self.options.has_key('AWSAccessKeyId'):
+            self.options['AWSAccessKeyId'] = self.conf['access_key']
+
         if not self.options.has_key('Timestamp'):
             self.options['Timestamp'] = datetime.utcnow().isoformat()
 
