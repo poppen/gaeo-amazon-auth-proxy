@@ -56,7 +56,7 @@ class ProductAdvertising:
 
         payload = ""
         for v in sorted( self.options.items() ):
-            payload += '&%s=%s' % (v[0], urllib.quote(str(v[1])))
+            payload += '&%s=%s' % (v[0], urllib.quote(str(v[1]),safe='~'))
         payload = payload[1:]
 
         uri = urlparse.urlparse( self.get_entry_point(self.countrycode) )[1:]
@@ -65,5 +65,5 @@ class ProductAdvertising:
         digest = hmac.new( self.conf['secret_key'], '\n'.join(strings), hashlib.sha256 ).digest()
         signature = base64.b64encode(digest)
 
-        url = "http://%s%s?%s&Signature=%s" % (uri[0], uri[1], payload, urllib.quote_plus(signature))
+        url = "http://%s%s?%s&Signature=%s" % (uri[0], uri[1], payload, urllib.quote(signature,safe='~'))
         return urllib2.urlopen(url).read()
