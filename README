@@ -43,6 +43,7 @@ http://gae-aap.appspot.com/jp/ を指定した場合は、日本のAmazonのAPI
    フランス(fr) 
    イギリス(uk)
    ドイツ(de)
+   カナダ(ca)
 
 PathなしのURLを指定した場合には、amazon-auth-proxy.yamlに記述された
 デフォルトのAPIエントリポイントのURLが使用されます。

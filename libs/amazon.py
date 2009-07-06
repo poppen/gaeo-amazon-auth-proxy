@@ -12,7 +12,16 @@ class ProductAdvertising:
                 'jp':'http://webservices.amazon.co.jp/onca/xml',
                 'fr':'http://webservices.amazon.fr/onca/xml',
                 'uk':'http://webservices.amazon.co.uk/onca/xml',
-                'de':'http://webservices.amazon.de/onca/xml'
+                'de':'http://webservices.amazon.de/onca/xml',
+                'ca':'http://webservices.amazon.ca/onca/xml'
+        }
+        self.xslt_entry_points = {
+                'us':'http://xml-us.amznxslt.com/onca/xml',
+                'jp':'http://xml-jp.amznxslt.com/onca/xml',
+                'fr':'http://xml-fr.amznxslt.com/onca/xml',
+                'uk':'http://xml-uk.amznxslt.com/onca/xml',
+                'de':'http://xml-de.amznxslt.com/onca/xml',
+                'ca':'http://xml-ca.amznxslt.com/onca/xml'
         }
         self.countrycode = ''
 
@@ -29,12 +38,20 @@ class ProductAdvertising:
         self.options['Timestamp'] = datetime.utcnow().isoformat()
 
     def get_entry_point(self, countrycode = ''):
-        if not countrycode:
-            return self.conf['default_entry_point']
-        elif self.entry_points.has_key(countrycode):
-            return self.entry_points[countrycode]
+        if self.options.has_key('Style'):
+            if not countrycode:
+                return self.conf['default_xslt_entry_point']
+            elif self.xslt_entry_points.has_key(countrycode):
+                return self.xslt_entry_points[countrycode]
+            else:
+                return self.conf['default_xslt_entry_point']
         else:
-            return self.conf['default_entry_point']
+            if not countrycode:
+                return self.conf['default_entry_point']
+            elif self.entry_points.has_key(countrycode):
+                return self.entry_points[countrycode]
+            else:
+                return self.conf['default_entry_point']
 
     def get_aid(self, countrycode = ''):
         if not countrycode:

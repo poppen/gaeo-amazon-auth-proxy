@@ -1,6 +1,7 @@
 access_key: YOUR ACCESS KEY
 secret_key: YOUR SECRET KEY
 default_entry_point: DEFAULT ENTRY POINT URL OF AMAZON
+default_xslt_entry_point: DEFAULT XSLT ENTRY POINT URL OF AMAZON
 default_aid: poppennikki-22
 aids:
   us: poppenspage-20 
