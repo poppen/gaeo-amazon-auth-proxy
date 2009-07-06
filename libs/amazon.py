@@ -17,20 +17,16 @@ class ProductAdvertising:
         self.countrycode = ''
 
         for key in params:
-            if key == 'AWSAccessKeyId':
+            if key == 'AWSAccessKeyId' or key == 'SubscriptionId':
                 self.options[key] = self.conf['access_key']
             elif key == 'countrycode':
                 self.countrycode = params['countrycode']
-            elif key == 'controller' or key == 'action':
+            elif key == 'Timestamp' or key == 'controller' or key == 'action':
                 pass
             else:
                 self.options[key] = params[key]
 
-        if not self.options.has_key('AWSAccessKeyId'):
-            self.options['AWSAccessKeyId'] = self.conf['access_key']
-
-        if not self.options.has_key('Timestamp'):
-            self.options['Timestamp'] = datetime.utcnow().isoformat()
+        self.options['Timestamp'] = datetime.utcnow().isoformat()
 
     def get_entry_point(self, countrycode = ''):
         if not countrycode:
