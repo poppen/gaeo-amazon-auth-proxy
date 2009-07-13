@@ -69,7 +69,7 @@ class ProductAdvertising:
 
         payload = ""
         for v in sorted( self.options.items() ):
-            payload += '&%s=%s' % (v[0], urllib.quote(str(v[1]),safe='~'))
+            payload += '&%s=%s' % (v[0], urllib.quote( unicode(v[1]).encode('utf-8'),safe='~' ))
         payload = payload[1:]
 
         uri = urlparse.urlparse( self.get_entry_point(self.countrycode) )[1:]
