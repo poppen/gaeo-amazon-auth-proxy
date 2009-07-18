@@ -1,0 +1,11 @@
+# === あなたの amazon-auth-proxy 名
+name: gae-aap
+
+# === 対応 Locale
+locales:
+  - jp
+  - us
+  - ca
+  - de
+  - fr
+  - uk

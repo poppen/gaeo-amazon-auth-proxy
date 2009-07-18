@@ -2,5 +2,6 @@ gaeo
 *.pyc
 index.yaml
 amazon-auth-proxy.yaml
+rpaproxy.yaml
 *.swp
 *~

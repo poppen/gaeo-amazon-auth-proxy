@@ -15,5 +15,8 @@ handlers:
 - url: /favicon.ico
   static_files: favicon.ico
   upload: favicon.ico
+- url: /(rpaproxy.yaml)
+  static_files: \1
+  upload: rpaproxy.yaml
 - url: .*
   script: main.py
