@@ -6,7 +6,7 @@ from libs.amazon import ProductAdvertising
 
 class ProxyController(BaseController):
     def _is_ua_proxy(self):
-        if self.request.headers['User-Agent'] == 'rpaproxy':
+        if 'rpaproxy' in self.request.headers['User-Agent']:
             return True
         else:
             return False
