@@ -5,3 +5,4 @@ default_xslt_entry_point: DEFAULT XSLT ENTRY POINT URL OF AMAZON
 default_aid: poppennikki-22
 aids:
   us: poppenspage-20 
+use_redirect: True

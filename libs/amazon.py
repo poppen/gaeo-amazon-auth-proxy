@@ -63,7 +63,7 @@ class ProductAdvertising:
             except KeyError:
                 return self.conf['default_aid']
 
-    def send_request(self):
+    def build_url(self):
         if not self.options.has_key('AssociateTag'):
             self.options['AssociateTag'] = self.get_aid(self.countrycode)
 
@@ -79,4 +79,8 @@ class ProductAdvertising:
         signature = base64.b64encode(digest)
 
         url = "http://%s%s?%s&Signature=%s" % (uri[0], uri[1], payload, urllib.quote(signature,safe='~'))
+        return url
+
+    def send_request(self):
+        url = self.build_url()
         return urllib2.urlopen(url).read()
