@@ -8,8 +8,9 @@ GAEO)で実装したものです。
 <http://github.com/tdtds/amazon-auth-proxy/tree/master>
 
 amazon-auth-proxy.cgiと同じく、従来のAmazon ECS APIとして動作し、
-指定した各国のAmazon PAAPIに対して認証済みリクエストを送信、結果を
-そのまま返します。
+指定した各国のAmazon PAAPIに対して認証済みリクエストを送信、有効な
+認証済みリクエストを作成して呼び出し元に返します。または実際に
+APIをコールしたのち、結果をそのまま返します。
 
 rootディレクトリにあるamazon-auth-proxy.yamlというファイルを読み、
 そこに記述されている各種APIキー、アソシエイトIDなどを使ってAPI
@@ -35,18 +36,22 @@ Google App Engineにデプロイした場合には、通常、amazon-auth-proxy.
 しています。デプロイ後Pathに2文字の国コードを指定すると、指定した国の
 AmazonのAPIエントリポイントURLが使用されます。例えば、
 http://gae-aap.appspot.com/jp/ を指定した場合は、日本のAmazonのAPI
-エントリポイントURLが使われます。現在対応している国と国コードは次の
-通りです。
+エントリポイントURLが使われます。現在対応している国と国コード、エントリ
+ポイントURLは次の通りです。
 
-   アメリカ(us)
-   日本(jp)
-   フランス(fr) 
-   イギリス(uk)
-   ドイツ(de)
-   カナダ(ca)
+   アメリカ(us) : http://webservices.amazon.com/onca/xml
+   日本(jp)     : http://webservices.amazon.co.jp/onca/xml
+   フランス(fr) : http://webservices.amazon.fr/onca/xml
+   イギリス(uk) : http://webservices.amazon.co.uk/onca/xml
+   ドイツ(de)   : http://webservices.amazon.de/onca/xml
+   カナダ(ca)   : http://webservices.amazon.ca/onca/xml
 
 PathなしのURLを指定した場合には、amazon-auth-proxy.yamlに記述された
 デフォルトのAPIエントリポイントのURLが使用されます。
+
+use_redirectは、通常Trueにして運用してください。これは構築した
+AmazonへのリクエストURLを、302リダイレクトとして呼び出し元に返す
+という意味です。これによりproxyサーバの負荷を低減します。
 
 本プログラムのAmazon Product Advertising APIのコードはYOUTHHRさんのものを
 参考にさせていただいています。
