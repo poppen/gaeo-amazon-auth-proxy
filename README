@@ -46,6 +46,17 @@ http://gae-aap.appspot.com/jp/ を指定した場合は、日本のAmazonのAPI
    ドイツ(de)   : http://webservices.amazon.de/onca/xml
    カナダ(ca)   : http://webservices.amazon.ca/onca/xml
 
+
+また、Styleパラメタを使用したクエリのため、xslt_entry_pointとして以下の
+URLも指定してください。
+
+   アメリカ(us) : http://xml-us.amznxslt.com/onca/xml
+   日本(jp)     : http://xml-jp.amznxslt.com/onca/xml
+   フランス(fr) : http://xml-fr.amznxslt.com/onca/xml
+   イギリス(uk) : http://xml-uk.amznxslt.com/onca/xml
+   ドイツ(de)   : http://xml-de.amznxslt.com/onca/xml
+   カナダ(ca)   : http://xml-ca.amznxslt.com/onca/xml
+
 PathなしのURLを指定した場合には、amazon-auth-proxy.yamlに記述された
 デフォルトのAPIエントリポイントのURLが使用されます。
 
